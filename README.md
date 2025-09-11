@@ -14,6 +14,12 @@
 
 📌 [akshaybahadur21 / Drowsiness_Detection](https://github.com/akshaybahadur21/Drowsiness_Detection)  
 
+📌 [논문 링크 (PDF)](https://vision.fe.uni-lj.si/cvww2016/proceedings/papers/05.pdf) 
+Tereza Soukupova, Jan Cech,  
+  *Real-Time Eye Blink Detection using Facial Landmarks*,  
+  21st Computer Vision Winter Workshop, Rimske Toplice, Slovenia, Feb 2016.  
+
+
 <br>
 
 ### 📆 프로젝트 기간
@@ -53,7 +59,8 @@
 
 ### 💡구현 방법
 
-.py 코드 바로가기
+
+[🔗 main.py 바로가기](main.py)
 
 <br>
 
@@ -61,8 +68,6 @@
 ## ① 얼굴 감지 (Face Detection)
 
 <img src="images/face_detect.jpg" alt="face detect" width="300"/>
-
-<br>
 
 **▪ 원리** <br>
 
@@ -82,8 +87,6 @@ detect = dlib.get_frontal_face_detector( ) <br>
 
 <img src="images/facial.png" alt="landmark" width="300"/>
 
-<br>
-
 **▪ 원리** <br>
 
 감지된 얼굴에서 눈, 코, 입, 턱 등 68개의 특징점 좌표를 추출함 <br>
@@ -100,7 +103,7 @@ predict = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat") <br>
 
 ## ③ EAR 계산 (Eye Aspect Ratio)
 
-<img src="images/ear.png" alt="EAR" width="600"/>
+<img src="images/ear.png" alt="EAR" width="900"/>
 
 **▪ 원리** <br>
 
@@ -120,7 +123,7 @@ eye_aspect_ratio(eye) 함수에서 계산함 <br>
 
 ## ④ 졸음 판정 로직 (Drowsiness Logic)
 
-<img src="images/flag.png" alt="flag_frame" width="700"/>
+<img src="images/flag.png" alt="flag_frame" width="900"/>
 
 **▪ 원리** <br>
 
@@ -152,7 +155,7 @@ flag 변수를 이용해 연속된 프레임 수 카운트함 <br>
 
 OpenCV의 cv2.putText( )로 화면에 빨간 경고 문구 출력
 
-<br>
+<br><br>
 
 ## 💻 실습 화면
 
