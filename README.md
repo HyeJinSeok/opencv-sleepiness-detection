@@ -55,8 +55,14 @@
 
 .py 코드 바로가기
 
+<br>
+
 
 ## ① 얼굴 감지 (Face Detection)
+
+<img src="images/face_detect.jpg" alt="face detect" width="300"/>
+
+<br>
 
 **▪ 원리** <br>
 
@@ -74,6 +80,10 @@ detect = dlib.get_frontal_face_detector( ) <br>
 
 ## ② 얼굴 랜드마크 검출 (Facial Landmark Detection)
 
+<img src="images/facial.png" alt="landmark" width="300"/>
+
+<br>
+
 **▪ 원리** <br>
 
 감지된 얼굴에서 눈, 코, 입, 턱 등 68개의 특징점 좌표를 추출함 <br>
@@ -90,6 +100,8 @@ predict = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat") <br>
 
 ## ③ EAR 계산 (Eye Aspect Ratio)
 
+<img src="images/ear.png" alt="EAR" width="600"/>
+
 **▪ 원리** <br>
 
 눈이 감겼는지 여부를 정량적으로 계산하는 지표 <br>
@@ -98,3 +110,58 @@ predict = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat") <br>
 
 EAR 값이 작아질수록 눈이 감긴 상태 <br>
 
+**▪ 코드** <br>
+
+eye_aspect_ratio(eye) 함수에서 계산함 <br> 
+
+왼쪽/오른쪽 눈 EAR 평균값을 구해 최종 EAR로 사용 <br>
+
+<br>
+
+## ④ 졸음 판정 로직 (Drowsiness Logic)
+
+<img src="images/flag.png" alt="flag_frame" width="700"/>
+
+**▪ 원리** <br>
+
+단순한 눈 깜빡임과 졸음을 구분하기 위해, <br>
+
+" EAR < 임계값(thresh) " 이 상태가 <br>
+
+일정 시간(= 프레임 수) 이상 유지될 때만 졸음으로 판정함 <br>
+
+**▪ 코드** <br>
+
+EAR_THRESH = 0.25 <br>
+
+EAR_CONSEC_FRAMES = 20 <br>
+
+flag 변수를 이용해 연속된 프레임 수 카운트함 <br>
+
+조건 충족 시 cv2.putText(frame, "DROWSINESS ALERT!", ...) 출력
+
+<br>
+
+## ⑤ 경고 출력 (Alert)
+
+**▪ 원리** <br>
+
+운전자에게 시각적으로 경각심을 주는 단계 <br>
+
+**▪ 코드** <br>
+
+OpenCV의 cv2.putText( )로 화면에 빨간 경고 문구 출력
+
+<br>
+
+## 💻 실습 화면
+
+<img src="images/cap1.png" alt="capture1" width="900"/>
+
+<br>
+
+<img src="images/cap2.png" alt="capture2" width="900"/>
+
+<br>
+
+<img src="images/cap3.png" alt="capture3" width="900"/>
