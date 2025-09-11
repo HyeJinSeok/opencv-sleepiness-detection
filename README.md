@@ -74,13 +74,11 @@ Tereza Soukupova, Jan Cech,
 **▪ 원리** <br>
 
 카메라 영상 속에서 사람의 얼굴 위치를 찾는 단계에 해당함 <br>
-
 HOG(Histogram of Oriented Gradients) + SVM(Support Vector Machine) 기반 감지기 사용 <br>
 
 **▪ 코드** <br>
 
 dlib이 제공하는 얼굴 감지기를 호출해 카메라 프레임 속 얼굴 영역을 탐지함 <br>
-
 detect = dlib.get_frontal_face_detector( ) <br>
 
 <br>
@@ -92,13 +90,11 @@ detect = dlib.get_frontal_face_detector( ) <br>
 **▪ 원리** <br>
 
 감지된 얼굴에서 눈, 코, 입, 턱 등 68개의 특징점 좌표를 추출함 <br>
-
 특히 눈 주변 좌표(6개)는 EAR 계산에 직접 사용됨 <br>
 
 **▪ 코드** <br>
 
 dlib이 제공하는 사전학습된 랜드마크 예측 모델을 이용해 좌표를 도출함 <br>
-
 predict = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat") <br>
 
 <br>
@@ -110,15 +106,12 @@ predict = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat") <br>
 **▪ 원리** <br>
 
 눈이 감겼는지 여부를 정량적으로 계산하는 지표 <br>
-
 눈 세로 거리(A, B)와 가로 거리(C)를 이용: &nbsp;**EAR = (A + B) / (2.0 * C)** <br>
-
 EAR 값이 작아질수록 눈이 감긴 상태 <br>
 
 **▪ 코드** <br>
 
 eye_aspect_ratio(eye) 함수에서 계산함 <br> 
-
 왼쪽/오른쪽 눈 EAR 평균값을 구해 최종 EAR로 사용 <br>
 
 <br>
@@ -130,19 +123,14 @@ eye_aspect_ratio(eye) 함수에서 계산함 <br>
 **▪ 원리** <br>
 
 단순한 눈 깜빡임과 졸음을 구분하기 위해, <br>
-
 " EAR < 임계값(thresh) " 이 상태가 <br>
-
 일정 시간(= 프레임 수) 이상 유지될 때만 졸음으로 판정함 <br>
 
 **▪ 코드** <br>
 
 EAR_THRESH = 0.25 <br>
-
 EAR_CONSEC_FRAMES = 20 <br>
-
 flag 변수를 이용해 연속된 프레임 수 카운트함 <br>
-
 조건 충족 시 cv2.putText(frame, "DROWSINESS ALERT!", ...) 출력
 
 <br>
