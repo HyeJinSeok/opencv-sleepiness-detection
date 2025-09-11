@@ -8,6 +8,8 @@
 
 일정 시간 이상 눈이 감겨 있으면, 졸음 상태로 판단하여 Alert를 울린다. <br>
 
+<br>
+
 구현 과정에서 다음의 깃허브 프로젝트를 참고하였다: 
 
 📌 [fiyero / OpenCV_Dlib_drunk_sleepy_alert_for_driver](https://github.com/fiyero/OpenCV_Dlib_drunk_sleepy_alert_for_driver)  
@@ -28,7 +30,7 @@ Tereza Soukupova, Jan Cech,
 
 <br>
 
-### ⚙️사용 기술
+### ⚙️사용 기술 (OpenCV, dlib)
 
 &nbsp;- **Python 3.x**
 
